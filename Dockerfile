@@ -19,8 +19,17 @@ RUN apt-get install -y git
 # RUN curl -sSL https://golang.org/dl/go1.3.1.src.tar.gz | tar -v -C /usr/local -xz
 # RUN git clone https://github.com/docker/docker.git
 
+RUN apt-get install -y maven
+
 RUN git clone https://github.com/devdevdev09/202010.git
 
-# WORKDIR /202010/msgbot
-# RUN mvm
+WORKDIR /202010/msgbot
+RUN mvn package
+
+
+RUN echo "========================="
+RUN echo "build complete!!!!!!!!!!!"
+RUN echo "========================="
+
+# RUN java -Dline.channel_access_token=test -Dslack.webhookurl=test -Dline.user_id=tess -jar target/msgbot-0.0.1-SNAPSHOT.jar
 
