@@ -21,12 +21,16 @@ RUN apt-get update
 # RUN git clone https://github.com/docker/docker.git
 
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt install -y maven bash git
+RUN apt install -y maven bash git gradle
 
 RUN git clone https://github.com/devdevdev09/202010.git
+RUN git clone https://github.com/devdevdev09/TODO-LIST.git
 
 WORKDIR /202010/msgbot
 RUN mvn package
+
+WORKDIR /TODO
+RUN gradle build
 
 
 RUN echo "========================="
